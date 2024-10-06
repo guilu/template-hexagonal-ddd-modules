@@ -1,8 +1,8 @@
 # DDD Template with Gradle Modules
-Template for a backend application following *Domain-Driven Design* structured with Gradle Modules.
+Template for a backend application following *Domain-Driven Design* structured with Gradle Hexagonal sModules.
 
 ## Related technologies
-- Java 11
-- Spring Boot 2.4.1
+- Java 21
+- Spring Boot 3.2.6
 - JUnit 5
-- Gradle 6.7.1
+- Gradle 8.8

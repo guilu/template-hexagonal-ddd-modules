@@ -1,4 +1,4 @@
-package dev.borjag.dddtemplate.configurations;
+package dev.borjag.dddtemplate.config;
 
 import dev.borjag.dddtemplate.adapters.output.TemplateResourcePersister;
 import dev.borjag.dddtemplate.adapters.output.TemplateResourceCreator;

@@ -6,3 +6,5 @@ Template for a backend application following *Domain-Driven Design* structured w
 - Spring Boot 3.2.6
 - JUnit 5
 - Gradle 8.8
+
+info https://leanmind.es/es/blog/gradle-modules-y-domain-driven-design/

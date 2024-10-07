@@ -5,7 +5,7 @@ plugins {
 
 subprojects {
 
-	group = 'com.diegobarrioh'
+	group = 'com.emobg'
 	version = '0.0.1'
 
 	java {

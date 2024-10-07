@@ -1,5 +1,6 @@
 package dev.borjag.dddtemplate.objects;
 
+import com.emobg.microservice.entity.Resource;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;

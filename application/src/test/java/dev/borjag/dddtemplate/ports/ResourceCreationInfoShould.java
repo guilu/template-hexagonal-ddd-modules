@@ -1,7 +1,7 @@
 package dev.borjag.dddtemplate.ports;
 
-import dev.borjag.dddtemplate.objects.Resource;
-import dev.borjag.dddtemplate.ports.output.dtos.ResourceCreationInfo;
+import com.emobg.microservice.entity.Resource;
+import com.emobg.microservice.port.dto.ResourceCreationInfo;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;

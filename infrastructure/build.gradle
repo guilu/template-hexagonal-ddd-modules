@@ -1,6 +1,7 @@
+import org.codehaus.groovy.runtime.GStringImpl
+
 plugins {
     id 'org.springframework.boot' version '3.2.6'
-    id 'jacoco'
 }
 
 dependencies {
@@ -35,8 +36,8 @@ bootJar {
 
 ext {
     cucumberStepsPackage = "cucumber.steps"
-    cucumberFeaturesFolder = "${project.projectDir}/src/test/java/cucumber/features"
-    configLocation = "${project.projectDir}/src/main/resources/,${project.projectDir}/src/test/resources/"
+    cucumberFeaturesFolder = "${project.projectDir}/src/test/java/cucumber/features" as GStringImpl
+    configLocation = "${project.projectDir}/src/main/resources/,${project.projectDir}/src/test/resources/" as GStringImpl
 }
 
 configurations {
@@ -75,15 +76,6 @@ tasks.register('acceptanceTest') {
                     '--glue', stepsPackage, featuresFolder
             ]
         }
-    }
-}
-
-jacocoTestReport {
-    group = "Reporting"
-    reports {
-        xml.getRequired().set(true)
-        csv.getRequired().set(false)
-        html.destination file("${buildDir}/reports/coverage")
     }
 }
 

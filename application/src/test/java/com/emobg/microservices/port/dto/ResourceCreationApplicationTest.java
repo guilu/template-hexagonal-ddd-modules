@@ -1,4 +1,4 @@
-package dev.borjag.dddtemplate.ports;
+package com.emobg.microservices.port.dto;
 
 import com.emobg.microservice.entity.Resource;
 import com.emobg.microservice.port.dto.ResourceCreationInfo;

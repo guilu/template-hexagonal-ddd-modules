@@ -27,11 +27,15 @@ subprojects {
 	}
 
 	test {
-		useJUnitPlatform()
 
-		include '**/*Should.class'
+		include '**/*UnitTest.class'
+		include '**/*ApplicationTest.class'
 		include '**/*IT.class'
-	}
+		testLogging.showStandardStreams(true)
+		useJUnitPlatform()
+		jvmArgs("-XX:+EnableDynamicAgentLoading")
 
+
+	}
 
 }

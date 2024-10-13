@@ -1,3 +1,4 @@
 dependencies {
     implementation project(':domain')
+    println("application depends on domain....")
 }

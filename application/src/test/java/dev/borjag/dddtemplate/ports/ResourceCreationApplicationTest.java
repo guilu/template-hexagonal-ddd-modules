@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-public class ResourceCreationInfoShould {
+public class ResourceCreationApplicationTest {
 
     @Test
     void create_its_own_id_on_object_construction() {

@@ -18,11 +18,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(value = "/api/v1")
-public class SomeController {
+public class ResourceController {
 
     private final ResourceCreator resourceCreator;
 
-    public SomeController(ResourceCreator templateResourceCreator) {
+    public ResourceController(ResourceCreator templateResourceCreator) {
         resourceCreator = templateResourceCreator;
     }
 

@@ -1,5 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '3.2.6'
+    id 'jacoco'
 }
 
 dependencies {
@@ -15,9 +16,74 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'com.h2database:h2:1.4.200'
+
+    testImplementation "io.cucumber:cucumber-java:${cucumber_version}"
+    testImplementation "io.cucumber:cucumber-spring:${cucumber_version}"
+    testImplementation "io.cucumber:cucumber-junit-platform-engine:${cucumber_version}"
+
+    println("infra dependencies")
+}
+
+springBoot {
+    buildInfo()
 }
 
 bootJar {
     archiveFileName = 'hddd-template.jar'
     destinationDirectory = file("$rootDir/build/libs")
 }
+
+ext {
+    cucumberStepsPackage = "cucumber.steps"
+    cucumberFeaturesFolder = "${project.projectDir}/src/test/java/cucumber/features"
+    configLocation = "${project.projectDir}/src/main/resources/,${project.projectDir}/src/test/resources/"
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+tasks.register('acceptanceTest') {
+
+    println("AcceptanceTest current projectDir --> ${project.projectDir} and rootProject --> ${rootProject.projectDir}")
+
+    dependsOn assemble, testClasses
+
+    def stepsPackage = project.findProperty("cucumberStepsPackage") ?: "steps"
+    def featuresFolder = project.findProperty("cucumberFeaturesFolder") ?: "${rootProject.projectDir}/src/test/java/features"
+
+    println("stepsPackage ->"+stepsPackage)
+    println("stepsPackage -> "+featuresFolder)
+
+    doLast {
+        javaexec {
+            mainClass = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+
+            if(project.findProperty("configLocation")) {
+                jvmArgs = [
+                        "-Dspring.config.location=${project.findProperty("configLocation")}"
+                ]
+            }
+
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', "html:${rootProject.projectDir}/build/reports/cucumber/cucumber-reports.html",
+                    '--plugin', "junit:${rootProject.projectDir}/build/reports/cucumber/cucumber.xml",
+                    '--glue', stepsPackage, featuresFolder
+            ]
+        }
+    }
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    reports {
+        xml.getRequired().set(true)
+        csv.getRequired().set(false)
+        html.destination file("${buildDir}/reports/coverage")
+    }
+}
+

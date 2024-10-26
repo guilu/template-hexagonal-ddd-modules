@@ -2,7 +2,7 @@ package com.emobg.microservice.adapter.output;
 
 import com.emobg.microservice.port.dto.output.ResourceCreator;
 import com.emobg.microservice.port.dto.output.ResourcePersister;
-import com.emobg.microservice.port.dto.ResourceCreationInfo;
+import com.emobg.microservice.port.dto.ResourceCreationFromRequest;
 
 public class TemplateResourceCreator implements ResourceCreator {
 
@@ -13,7 +13,7 @@ public class TemplateResourceCreator implements ResourceCreator {
     }
 
     @Override
-    public void execute(ResourceCreationInfo info) {
-        resourcePersister.persist(info.toResource());
+    public void execute(ResourceCreationFromRequest request) {
+        resourcePersister.persist(request.toResource());
     }
 }

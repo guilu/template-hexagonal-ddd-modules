@@ -2,13 +2,13 @@ package com.emobg.microservice.port.dto;
 
 import com.emobg.microservice.entity.Resource;
 
-public class ResourceCreationInfo {
+public class ResourceCreationFromRequest {
 
     private String id;
     private String name;
     private String date;
 
-    public ResourceCreationInfo(
+    public ResourceCreationFromRequest(
             String name,
             String date
     ) {

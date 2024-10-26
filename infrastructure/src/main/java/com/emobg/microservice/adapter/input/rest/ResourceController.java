@@ -1,8 +1,8 @@
 package com.emobg.microservice.adapter.input.rest;
 
-import com.emobg.microservice.adapter.input.dto.ResourceInfo;
+import com.emobg.microservice.adapter.input.dto.ResourceRequest;
 import com.emobg.microservice.port.dto.output.ResourceCreator;
-import com.emobg.microservice.port.dto.ResourceCreationInfo;
+import com.emobg.microservice.port.dto.ResourceCreationFromRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,14 +31,14 @@ public class ResourceController {
             produces = APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Map<String, String>> createResource(
-            @Valid @RequestBody ResourceInfo info
+            @Valid @RequestBody ResourceRequest info
     ) {
-        ResourceCreationInfo adaptedInfo = info.toResourceCreationInfo();
+        ResourceCreationFromRequest adaptedInfo = info.toResourceCreationInfo();
         resourceCreator.execute(adaptedInfo);
         return new ResponseEntity<>(formatResponse(adaptedInfo), CREATED);
     }
 
-    private Map<String, String> formatResponse(ResourceCreationInfo info) {
+    private Map<String, String> formatResponse(ResourceCreationFromRequest info) {
         Map<String, String> responseBody = new HashMap<>();
         responseBody.put("resourceId", info.getId());
         return responseBody;

@@ -1,7 +1,7 @@
 package com.emobg.microservice.adapter;
 
 import com.emobg.microservice.port.dto.output.ResourceCreator;
-import com.emobg.microservice.port.dto.ResourceCreationInfo;
+import com.emobg.microservice.port.dto.ResourceCreationFromRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +23,7 @@ public class TemplateResourceCreatorIT {
     void create_a_resource_successfully() {
         String name = "dummyName";
         String date = "01/01/2020";
-        ResourceCreationInfo resourceCreationInfo = new ResourceCreationInfo(name, date);
+        ResourceCreationFromRequest resourceCreationInfo = new ResourceCreationFromRequest(name, date);
 
         resourceCreator.execute(resourceCreationInfo);
 

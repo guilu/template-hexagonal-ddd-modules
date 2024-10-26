@@ -1,17 +1,17 @@
 package com.emobg.microservice.adapter.input.dto;
 
-import com.emobg.microservice.port.dto.ResourceCreationInfo;
+import com.emobg.microservice.port.dto.ResourceCreationFromRequest;
 
 import jakarta.validation.constraints.NotNull;
 
-public class ResourceInfo {
+public class ResourceRequest {
 
     @NotNull
     private String name;
     @NotNull
     private String date;
 
-    public ResourceInfo(
+    public ResourceRequest(
             String name,
             String date
     ) {
@@ -19,8 +19,8 @@ public class ResourceInfo {
         this.date = date;
     }
 
-    public ResourceCreationInfo toResourceCreationInfo() {
-        return new ResourceCreationInfo(
+    public ResourceCreationFromRequest toResourceCreationInfo() {
+        return new ResourceCreationFromRequest(
                 this.name,
                 this.date
         );

@@ -1,7 +1,7 @@
 package com.emobg.microservice.port.dto.output;
 
-import com.emobg.microservice.port.dto.ResourceCreationInfo;
+import com.emobg.microservice.port.dto.ResourceCreationFromRequest;
 
 public interface ResourceCreator {
-    void execute(ResourceCreationInfo info);
+    void execute(ResourceCreationFromRequest request);
 }

@@ -34,6 +34,7 @@ subprojects {
 		include '**/*UnitTest.class'
 		include '**/*ApplicationTest.class'
 		include '**/*IT.class'
+		exclude("**/**DddTemplateApplication.class")
 		testLogging.showStandardStreams(true)
 		useJUnitPlatform()
 		jvmArgs("-XX:+EnableDynamicAgentLoading")
@@ -57,6 +58,14 @@ subprojects {
 				}
 			}
 		}
+
+		afterEvaluate {
+			classDirectories = files(classDirectories.files.collect {
+				fileTree(dir: it,
+						exclude: ['**/DddTemplateApplication**'])
+			})
+		}
 	}
+
 
 }
